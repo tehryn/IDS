@@ -1,0 +1,166 @@
+\documentclass{beamer}
+\usepackage{times}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+% \usetheme{Berkeley}
+% \usetheme{Copenhagen}
+\usetheme{Madrid}
+% \usecolortheme{beaver}
+\newcommand{\czuv}[1]{\quotedblbase #1\textquotedblleft}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\setbeamertemplate{caption}[numbered]
+
+\title{Výkresy}
+\subtitle{Tvorba ER diagramu}
+\author{Míšová Miroslava a Matějka Jiří}
+\date{\today}
+%\logo{\includegraphics[width=3cm]{FIT.eps}}
+
+\begin{document}
+  \frame{\titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}
+    \frametitle{Obsah}
+    
+    \begin{itemize}
+      \item Zadání
+      \item Entitní množiny
+      \item Položky entitních množin
+      \item Vztahy mezi entitními možinami
+      \item Výsledný ER Diagram
+    \end{itemize}
+  \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}
+    \frametitle{Zadání - Výkresy}
+    \hspace{2mm}
+      \scriptsize{
+      Předpokládejte, že analyzujete požadavky na systém, který bude poskytovat počítačovou 
+      podporu pro kreslení stavebních výkresů. Z informací, které máte dosud k dispozici,
+      vyplývá, že jednotkou, se kterou bude systém pracovat, bude \colorbox{blue!30}{výkres}. Každý výkres bude
+      mít svůj název, autora, datum poslední změny a řadu dalších atributů, a bude se týkat
+      nemovitosti, u níž ukládáme název a místo.\par
+
+
+      \hspace{0.5cm}Pro jednu nemovitost může existovat více výkresů. Výkres obsahuje jednu nebo více tzv.
+      vrstev (např. vrstva s půdorysem budovy, rozvody plynu, elektřiny apod.), do nichž se
+      umísťují geometrické útvary. Na jedné vrstvě se může nacházet řada geometrických útvarů,
+      ale každý z nich je vždy jen na jedné vrstvě. Každá vrstva má své jednoznačné jméno.\par
+
+  
+      \hspace{0.5cm}Geometrické útvary lze rozdělit do dvou skupin -- primitivní a složené. Jako primitivní
+      uvažujte bod, lomenou čáru a uzavřenou oblast. Složené útvary vznikají seskupením jiných
+      útvarů (primitivních i složených). Protože musí být k dispozici i operace, která rozloží
+      složený útvar na útvary, jejichž seskupením vznikl, musí být tato informace (tj. které
+      prvky seskupení tvoří) k dispozici. Jedním z dalších požadavků je, aby systém pracoval
+      s určitými rozšířitelnými paletami -- barev, typů čar a typů výplně. Každá vrstva má
+      potom definovanou implicitní barvu (jedna barva  z  palety) a barvu podkladu, každý
+      primitivní prvek může mít definovánu jinou barvu (opět z palety). Podobně lomená čára
+      a uzavřená oblast mají definován typ čáry a uzavřená oblast navíc typ výplně – opět
+      z příslušných palet.\par}
+
+  \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}
+    \frametitle{Entitní množiny}
+      \scriptsize{
+      Předpokládejte, že analyzujete požadavky na systém, který bude poskytovat počítačovou 
+      podporu pro kreslení stavebních výkresů. Z informací, které máte dosud k dispozici,
+      vyplývá, že jednotkou, se kterou bude systém pracovat, bude výkres. Každý výkres bude
+      mít svůj název, autora, datum poslední změny a řadu dalších atributů, a bude se týkat
+      nemovitosti, u níž ukládáme název a místo.\par
+
+
+      \hspace{0.5cm}Pro jednu nemovitost může existovat více výkresů. Výkres obsahuje jednu nebo více tzv.
+      vrstev (např. vrstva s půdorysem budovy, rozvody plynu, elektřiny apod.), do nichž se
+      umísťují geometrické útvary. Na jedné vrstvě se může nacházet řada geometrických útvarů,
+      ale každý z nich je vždy jen na jedné vrstvě. Každá vrstva má své jednoznačné jméno.\par
+
+  
+      \hspace{0.5cm}Geometrické útvary lze rozdělit do dvou skupin -- primitivní a složené. Jako primitivní
+      uvažujte bod, lomenou čáru a uzavřenou oblast. Složené útvary vznikají seskupením jiných
+      útvarů (primitivních i složených). Protože musí být k dispozici i operace, která rozloží
+      složený útvar na útvary, jejichž seskupením vznikl, musí být tato informace (tj. které
+      prvky seskupení tvoří) k dispozici. Jedním z dalších požadavků je, aby systém pracoval
+      s určitými rozšířitelnými paletami -- barev, typů čar a typů výplně. Každá vrstva má
+      potom definovanou implicitní barvu (jedna barva  z  palety) a barvu podkladu, každý
+      primitivní prvek může mít definovánu jinou barvu (opět z palety). Podobně lomená čára
+      a uzavřená oblast mají definován typ čáry a uzavřená oblast navíc typ výplně – opět
+      z příslušných palet.\par}
+  \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}
+    \frametitle{Vztahy mezi entitními množinami}
+      \scriptsize{
+      Předpokládejte, že analyzujete požadavky na systém, který bude poskytovat počítačovou 
+      podporu pro kreslení stavebních výkresů. Z informací, které máte dosud k dispozici,
+      vyplývá, že jednotkou, se kterou bude systém pracovat, bude výkres. Každý výkres bude
+      mít svůj název, autora, datum poslední změny a řadu dalších atributů, a bude se týkat
+      nemovitosti, u níž ukládáme název a místo.\par
+
+
+      \hspace{0.5cm}Pro jednu nemovitost může existovat více výkresů. Výkres obsahuje jednu nebo více tzv.
+      vrstev (např. vrstva s půdorysem budovy, rozvody plynu, elektřiny apod.), do nichž se
+      umísťují geometrické útvary. Na jedné vrstvě se může nacházet řada geometrických útvarů,
+      ale každý z nich je vždy jen na jedné vrstvě. Každá vrstva má své jednoznačné jméno.\par
+
+  
+      \hspace{0.5cm}Geometrické útvary lze rozdělit do dvou skupin -- primitivní a složené. Jako primitivní
+      uvažujte bod, lomenou čáru a uzavřenou oblast. Složené útvary vznikají seskupením jiných
+      útvarů (primitivních i složených). Protože musí být k dispozici i operace, která rozloží
+      složený útvar na útvary, jejichž seskupením vznikl, musí být tato informace (tj. které
+      prvky seskupení tvoří) k dispozici. Jedním z dalších požadavků je, aby systém pracoval
+      s určitými rozšířitelnými paletami -- barev, typů čar a typů výplně. Každá vrstva má
+      potom definovanou implicitní barvu (jedna barva  z  palety) a barvu podkladu, každý
+      primitivní prvek může mít definovánu jinou barvu (opět z palety). Podobně lomená čára
+      a uzavřená oblast mají definován typ čáry a uzavřená oblast navíc typ výplně – opět
+      z příslušných palet.\par}
+  \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}
+      \scriptsize{
+      \frametitle{Výsledný ER diagram}
+      Předpokládejte, že analyzujete požadavky na systém, který bude poskytovat počítačovou 
+      podporu pro kreslení stavebních výkresů. Z informací, které máte dosud k dispozici,
+      vyplývá, že jednotkou, se kterou bude systém pracovat, bude výkres. Každý výkres bude
+      mít svůj název, autora, datum poslední změny a řadu dalších atributů, a bude se týkat
+      nemovitosti, u níž ukládáme název a místo.\par
+
+
+      \hspace{0.5cm}Pro jednu nemovitost může existovat více výkresů. Výkres obsahuje jednu nebo více tzv.
+      vrstev (např. vrstva s půdorysem budovy, rozvody plynu, elektřiny apod.), do nichž se
+      umísťují geometrické útvary. Na jedné vrstvě se může nacházet řada geometrických útvarů,
+      ale každý z nich je vždy jen na jedné vrstvě. Každá vrstva má své jednoznačné jméno.\par
+
+  
+      \hspace{0.5cm}Geometrické útvary lze rozdělit do dvou skupin -- primitivní a složené. Jako primitivní
+      uvažujte bod, lomenou čáru a uzavřenou oblast. Složené útvary vznikají seskupením jiných
+      útvarů (primitivních i složených). Protože musí být k dispozici i operace, která rozloží
+      složený útvar na útvary, jejichž seskupením vznikl, musí být tato informace (tj. které
+      prvky seskupení tvoří) k dispozici. Jedním z dalších požadavků je, aby systém pracoval
+      s určitými rozšířitelnými paletami -- barev, typů čar a typů výplně. Každá vrstva má
+      potom definovanou implicitní barvu (jedna barva  z  palety) a barvu podkladu, každý
+      primitivní prvek může mít definovánu jinou barvu (opět z palety). Podobně lomená čára
+      a uzavřená oblast mají definován typ čáry a uzavřená oblast navíc typ výplně – opět
+      z příslušných palet.\par}
+  \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% { % all template changes are local to this group.
+%     \setbeamertemplate{navigation symbols}{}
+%     \begin{frame}[plain]
+%         \begin{tikzpicture}[remember picture,overlay]
+%             \node[at=(current page.center)] {
+%                 \includegraphics[width=\paperwidth]{yourimage}
+%             };
+%         \end{tikzpicture}
+%      \end{frame}
+% }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}
+    \frametitle{Závěr}
+    \begin{center}   
+      Děkujeme za pozornost
+    \end{center}
+  \end{frame}
+\end{document}
