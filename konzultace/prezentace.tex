@@ -147,14 +147,10 @@
   \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  { % all template changes are local to this group.
-     \setbeamertemplate{navigation symbols}{}
-     \begin{frame}[plain]
-         \begin{tikzpicture}[remember picture,overlay]
-             \node[at=(current page.center)] {
-                 \includegraphics[width=\paperwidth]{konzultace01.png}
-             };
-         \end{tikzpicture}
-      \end{frame}
+ {
+ \usebackgroundtemplate{\includegraphics[width=\paperwidth]{konzultace01.png}}
+ \begin{frame}[plain]
+ \end{frame}
  }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \begin{frame}
