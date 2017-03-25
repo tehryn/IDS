@@ -85,33 +85,33 @@ CREATE TABLE Uctenka (
 );
 
 INSERT INTO Zamestnanec VALUES (
-    01, 'kuchař', 'Ladislav Hruštička', 6611111166 , '+420 565 535 879', 1234567890100, 15000
+    01, 'kuchar', 'Ladislav Hrusticka', 6611111166 , '+420 565 535 879', 1234567890100, 15000
 );
 INSERT INTO Zamestnanec VALUES (
-    02, 'cisnik', 'Uršula Jablíčková', 8012241811, '+420 603 214 715', 7359658920100, 12000
+    02, 'cisnik', 'Ursula Jablickova', 8012241811, '+420 603 214 715', 7359658920100, 12000
 );
 INSERT INTO Zamestnanec VALUES (
-    03, 'barman', 'Igor Třešnička', 9302291666, '+420 725 735 615', 6782135480200, 14500
+    03, 'barman', 'Igor Tresnicka', 9302291666, '+420 725 735 615', 6782135480200, 14500
 );
 
 INSERT INTO Stul VALUES (
   1, 'Zaharada', 6
 );
 INSERT INTO Stul VALUES (
-  2, 'Kuřácký sál', 8
+  2, 'Kuracky sal', 8
 );
 INSERT INTO Stul VALUES (
-  3, 'Nekuřácký sál', 4
+  3, 'Nekuracky sal', 4
 );
 
 INSERT INTO Rezervace VALUES (
-  0, '01.01.2017, 10:30', 'Filip Kachnička', '603 305 452', NULL , NULL , 01
+  0, '01.01.2017, 10:30', 'Filip Kachnicka', '603 305 452', NULL , NULL , 01
 );
 INSERT INTO Rezervace VALUES (
-  1, '04.01.2017, 12:00', 'Alexandr Malý', '714 413 725', NULL , NULL , 01
+  1, '04.01.2017, 12:00', 'Alexandr Maly', '714 413 725', NULL , NULL , 01
 );
 INSERT INTO Rezervace VALUES (
-  2, '04.01.2017, 12:00', 'Firma s.r.o', '603 305 452', 'Dagmar Štýrská' , 'dgstyrska@suznam.org' , 02
+  2, '04.01.2017, 12:00', 'Firma s.r.o', '603 305 452', 'Dagmar Styrska' , 'dgstyrska@suznam.org' , 02
 );
 
 INSERT INTO RObsahujeS VALUES (
@@ -128,36 +128,36 @@ INSERT INTO RObsahujeS VALUES (
 );
 
 INSERT INTO Potravina VALUES (
-    'Vepřový steak', 'Vepřové', 90, 'Hodit flákotu masa na pánev a osmažit', 90, 0, 'Mělký talíř', NULL
+    'Veprovy steak', 'Veprove', 90, 'Hodit flakotu masa na panev a osmazit', 90, 0, 'Melky talir', NULL
 );
 INSERT INTO Potravina VALUES (
-    'Pivo', 'Alkohol', NULL, NULL, 25, 0, NULL, 'Půllitr'
+    'Pivo', 'Alkohol', NULL, NULL, 25, 0, NULL, 'Pullitr'
 );
 INSERT INTO Potravina VALUES (
-    'Malinovka', 'Nealko', NULL, NULL, 15, 0, NULL, 'Třetinka'
+    'Malinovka', 'Nealko', NULL, NULL, 15, 0, NULL, 'Tretinka'
 );
 
 INSERT INTO Surovina VALUES (
-    'Malinová limonáda', NULL
+    'Malinova limonada', NULL
 );
 INSERT INTO Surovina VALUES (
-    'vepřová krkovice', NULL
+    'veprova krkovice', NULL
 );
 INSERT INTO Surovina VALUES (
-    'Plze�? 12', NULL
+    'Plzen 12', NULL
 );
 INSERT INTO Surovina VALUES (
-    'mléko', '7' /* muze byt i 7, 1, ...*/
+    'mleko', '7' /* muze byt i 7, 1, ...*/
 );
 
 INSERT INTO PObsahujeS VALUES (
-    'Vepřový steak', 'vepřová krkovice', 200 /*gram*/
+    'Veprovy steak', 'veprova krkovice', 200 /*gram*/
 );
 INSERT INTO PObsahujeS VALUES (
-    'Pivo', 'Plze�? 12', 5 /*deci*/
+    'Pivo', 'Plzen 12', 5 /*deci*/
 );
 INSERT INTO PObsahujeS VALUES (
-    'Malinovka', 'Malinová limonáda', 3 /*deci*/
+    'Malinovka', 'Malinova limonada', 3 /*deci*/
 );
 
 INSERT INTO Objednavka VALUES (
@@ -167,20 +167,20 @@ INSERT INTO Objednavka VALUES (
     1, '01.01.2017, 12:00', 'Placeno stravenkou'
 );
 INSERT INTO Objednavka VALUES (
-    2, '01.01.2017, 12:30', 'Pochválen kuchař'
+    2, '01.01.2017, 12:30', 'Pochvalen kuchar'
 );
 
 INSERT INTO OObsahujeP VALUES (
-    0, 'Vepřový steak', 1
+    0, 'Veprovy steak', 1
 );
 INSERT INTO OObsahujeP VALUES (
     0, 'Pivo', 2
 );
 INSERT INTO OObsahujeP VALUES (
-    1, 'Vepřový steak', 1
+    1, 'Veprovy steak', 1
 );
 INSERT INTO OObsahujeP VALUES (
-    2, 'Vepřový steak', 2
+    2, 'Veprovy steak', 2
 );
 INSERT INTO OObsahujeP VALUES (
     2, 'Pivo', 6
@@ -194,7 +194,7 @@ INSERT INTO Uctenka VALUES (
 );
 
 INSERT INTO Uctenka VALUES (
-    2, '01.01.2017, 12:02', NULL, 40, 2 /* platba zálohy*/
+    2, '01.01.2017, 12:02', NULL, 40, 2 /* platba zalohy*/
 );
 INSERT INTO Uctenka VALUES (
     3, '01.01.2017, 15:47', 40, 330, 2
