@@ -1,0 +1,2 @@
+build:
+	pdflatex dokumentace.tex
