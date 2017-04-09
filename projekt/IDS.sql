@@ -93,6 +93,9 @@ INSERT INTO Zamestnanec VALUES (
 INSERT INTO Zamestnanec VALUES (
     03, 'barman', 'Igor Tresnicka', 9302291666, '+420 725 735 615', 6782135480200, 14500
 );
+INSERT INTO Zamestnanec VALUES (
+    04, 'barman', 'Borys Brambora', 930789632, '+420 725 112 145', 6256641256200, 16000
+);
 
 INSERT INTO Stul VALUES (
   1, 'Zaharada', 6
@@ -136,15 +139,18 @@ INSERT INTO Potravina VALUES (
 INSERT INTO Potravina VALUES (
     'Malinovka', 'Nealko', NULL, NULL, 15, 0, NULL, 'Tretinka'
 );
+INSERT INTO Potravina VALUES (
+    'Mleko', 'Nealko', NULL, NULL, 15, 0, NULL, 'Tretinka'
+);
 
 INSERT INTO Surovina VALUES (
-    'Malinova limonada', NULL
+    'Malinova limonada'
 );
 INSERT INTO Surovina VALUES (
-    'veprova krkovice', NULL
+    'veprova krkovice'
 );
 INSERT INTO Surovina VALUES (
-    'Plzen 12', NULL
+    'Plzen 12'
 );
 INSERT INTO Surovina VALUES (
     'mleko', '7' /* muze byt i 7, 1, ...*/
@@ -159,7 +165,9 @@ INSERT INTO PObsahujeS VALUES (
 INSERT INTO PObsahujeS VALUES (
     'Malinovka', 'Malinova limonada', 3 /*deci*/
 );
-
+INSERT INTO PObsahujeS VALUES (
+    'Mleko', 'mleko', 3 /*deci*/
+);
 INSERT INTO Objednavka VALUES (
     0, '01.01.2017, 10:00', NULL
 );
@@ -200,6 +208,48 @@ INSERT INTO Uctenka VALUES (
     3, '01.01.2017, 15:47', 40, 330, 2
 );
 
+-- Vypise pracovni pozice a jaky je nejvyssi plat na danne pracovni pozici
+SELECT Z.prac_pozice, max(Z.plat)
+FROM Zamestnanec Z GROUP BY Z.prac_pozice;
+
+-- Pocet zamestnancu na pracovnich pozicich.
+SELECT Z.prac_pozice, count(Z.prac_pozice)
+FROM Zamestnanec Z GROUP BY Z.prac_pozice;
+-- GROUP splneno
+
+-- Vypise cisla stolu ktere byly rezervovany, v case kdy jsou rezervovane,
+-- kdo rezervaci vytvoril a kdo si rezervaci objednal.
+Select ROS.cislo_stolu, R.cas, Z.jmeno, R.jmeno_obj
+FROM Zamestnanec Z, Rezervace R, RObsahujeS ROS
+WHERE Z.ID = R.ID_zam AND ROS.id_rezervace = R.ID;
+-- Group a slouceni tri tabulek splneno
+
+-- Vypise suroviny, ktere obsahuji alergeny a obsazene alergeny
+SELECT S1.jmeno, S1.alergeny FROM Surovina S1
+WHERE EXISTS (
+  SELECT S2.alergeny FROM Surovina S2
+  where S2.jmeno = S1.jmeno
+);
+-- Exists, group a slouceni 3 tabulek splneno
+
+-- Vypise potraviny, ktere byly objednany 1.1. 2017 dopoledne
+SELECT OOP.jmeno FROM OObsahujeP OOP
+WHERE OOP.ID IN (
+  SELECT O.ID FROM Objednavka O
+  WHERE O.cas BETWEEN '01.01.2017, 00:00' AND '01.01.2017, 12:00'
+) GROUP BY OOP.jmeno;
+-- IN, exists, group a slouceni 3 tabulek splneno
+
+-- Vypise potraviny (ne suroviny) obsahujici alergeny a danne alergeny
+Select POS.jmenoP, S.alergeny
+FROM Surovina S, PObsahujeS POS
+Where POS.jmenoS = S.jmeno AND S.alergeny IS NOT NULL;
+
+-- Vypise ID rezervace, jeji cas a jmeno zamestnance, ktery ji vytvoril
+SELECT R.ID, R.cas, Z.jmeno
+FROM Zamestnanec Z, Rezervace R
+WHERE Z.ID = R.ID_ZAM;
+-- IN, exists, group a slouceni 2 a 3 tabulek splneno
 /*
 COMMIT;
 SELECT * FROM Zamestnanec;
