@@ -3,18 +3,11 @@
 	\usepackage[utf8]{inputenc}
 	\usepackage[left=2cm,text={17cm, 24cm},top=3cm, includefoot]{geometry}
 	\usepackage{times}
-
-	\usepackage{setspace}	
-
-
+	\usepackage{setspace}
 	\usepackage{graphicx}
-
 	\usepackage{lscape}
 
-
 \begin{document}
-
-	% titulni strana, opticky stred stranky
 	\thispagestyle{empty}
 
 	\begin{center}
@@ -26,44 +19,96 @@
 		\LARGE
 			IDS - Databázové systémy \\
 		\Huge
-			Datový model (ERD) a model případů užití \\
-		
+			Dokumentace k projektu \\
+
 		\LARGE	zadání projektu\\
 			Restaurace \\
 		\vspace{\stretch{0.618}}
 	\end{center}
-		{\Large 23.02.2017 \hfill Miroslava Míšová, Jiří Matějka} % lze pouzit i \today
-
-
-	\pagebreak  % konec stranky
-	\setcounter{page}{1}  % cislovani stranek bude az od druhe strany, kde bude cislo stranky 1
-
+		{\Large \today \hfill Matějka Jiří (xmatej52), Míšová Miroslava (xmisov00)} % lze pouzit i \today
+	\pagebreak
+	\setcounter{page}{1}
 
 	\section{Zadání}
-	Vytvořte IS pro restaurační zařízení, který napomůže k zjednodušení a zpřehlednění jeho provozu. Restaurace je členěna do více místností a má přední a zadní zahrádku a poskytuje běžné stravovací služby veřejnosti. Od informačního systému se požaduje, aby, krom jiného, umožnil správu rezervací a objednávek. Rezervovat je možné jeden nebo více stolů v místnostech či na zahrádkách, anebo celé místnosti, případně i celou restauraci pro různé společenské akce. Součástí rezervace také může být objednávka nápojů a jídel. Systém musí umožňovat zaměstnancům restaurace vkládat objednávky spolu s informacemi, který zaměstnanec danou objednávku vložil a pro koho je určena. Když se zákazníci rozhodnou zaplatit, musí jim systém vystavit účtenku. Po zaplacení pak příslušný zaměstnanec vloží záznam o platbě do systému. Systém by měl také poskytovat podrobný přehled tržeb za vybrané období. Přístup k této funkci bude mít pouze majitel. V neposlední řadě musí systém evidovat veškeré prodávané jídlo a pití (včetně složení), přičemž majitel a odpovědný vedoucí mají možnost měnit ceny jídla a pití nebo přidávat a odebírat položky. 
-	
+	Vytvořte IS pro restaurační zařízení, který napomůže k zjednodušení a zpřehlednění jeho provozu. Restaurace je členěna do více místností a má přední a zadní zahrádku a poskytuje běžné stravovací služby veřejnosti. Od informačního systému se požaduje, aby, krom jiného, umožnil správu rezervací a objednávek. Rezervovat je možné jeden nebo více stolů v místnostech či na zahrádkách, anebo celé místnosti, případně i celou restauraci pro různé společenské akce. Součástí rezervace také může být objednávka nápojů a jídel. Systém musí umožňovat zaměstnancům restaurace vkládat objednávky spolu s informacemi, který zaměstnanec danou objednávku vložil a pro koho je určena. Když se zákazníci rozhodnou zaplatit, musí jim systém vystavit účtenku. Po zaplacení pak příslušný zaměstnanec vloží záznam o platbě do systému. Systém by měl také poskytovat podrobný přehled tržeb za vybrané období. Přístup k této funkci bude mít pouze majitel. V neposlední řadě musí systém evidovat veškeré prodávané jídlo a pití (včetně složení), přičemž majitel a odpovědný vedoucí mají možnost měnit ceny jídla a pití nebo přidávat a odebírat položky.
 
-	\section{Use-case diagram}  
-
+	\section{Konečný ER diagram}
 	\begin{figure}[h]
-	\begin{center} 
-		\includegraphics[height=15cm]{use-case.png} 
-		\label{fig:obr_use-case}
-	\end{center}
-	\end{figure}
-
-	\pagebreak  % konec stranky
-
-	
-	\section{ER diagram}
-
-	\begin{figure}[h]
-	\begin{center} 
-		\includegraphics[height=18cm]{ERD.png} 
+	\begin{center}
+		\includegraphics[height=18cm]{ERD.png}
 		\label{fig:obr_ERD}
 	\end{center}
 	\end{figure}
+    \pagebreak
 
-	
+    \section{Triggery}
+    Oba vytvořené triggery pracují s tabulkou zaměstnanců. Jeden trigger generuje
+    ID, druhý kontroluje platnost rodného čísla.
 
+    \section{Procedury}
+    Obě ze dvou procedur používají CURSOR a EXCEPTION. Procedura  \texit{procento_vytvorenych_rezervaci}
+    má jako parametr ID zaměstnance a vypíše jeho jméno a kolik rezercací vytvořil
+    (v procentech). Pracuje tedy se dvěmi tabulkami: Rezervace a Zamestnanec.
+    Druhá procedura \textit{pocet_zidli} má jako parametr lokaci a vypíše
+    lokaci a počet židlí, které se v lokaci nacházejí. Pracuje tedy s tabulkou
+    Stul.
+
+    \section{Přidělení práv uživateli xmisov00}
+    Uživatel xmisov00 získal veškerá práva k procedurám a tabulkám, má tudíš
+    oprávnění administrátora (např. majitel restaurace). Kuchař by měl, práva
+    přístupu k tabulkám Surovina, Potravina a PObsahujeS.
+
+    \section{Materializovaný pohled}
+    Spolu s materializovaným pohledem byly vutvořeny i logy pro něj (využití
+    FAST REFRESH ON COMMIT - nemusí se spouštět celý dotaz materializovaného
+    pohledu). Mimo REFRESH FAST ON COMMIT jsme do pohledu nastavili i CACHE,
+    pro lepší načítání z pohledu, BUILD IMMEDIATE pro okamžité naplnění pohledu
+    po vytvoření a ENABLE QUERY REWRITE pro zapnutí optimalizace.
+
+    \section{Index a explain plain}
+    EXPLAIN PLAIN byl vytvořen pro spojení 3 tabulek a to Objednavka, Potravina
+    a OObsahujeP. Z těchto tabulek byla vypočítána celková cena objednávek.
+    Index byl vytvořen nad parametry tabulky OObsahujeP a to nad ID objednávky
+    a jménem potraviny. Po použití INDEX se procesorové zatížení značně zmenšilo
+    (viz. níže).
+
+    \subsection {Pred pouzitim INDEX}
+        \begin{tabular}{|l|l|l|l|l|l|}
+        \hline
+        ID & Operation                        & Name            & Rows & Bytes & Cost (\% CPU) \\ \hline
+        0  & SELECT STATEMENT                 &                 & 5    & 855   & 6 (17)        \\
+        1  & --HASH GROUP BY                  &                 & 5    & 855   & 6 (17)        \\
+        2  & ----NESTED LOOPS                 &                 & 5    & 855   & 6 (17)        \\
+        3  & ------NESTED LOOPS               &                 & 5    & 855   & 6 (17)        \\
+        4  & --------VIEWS                    & VW\_DBF\_5      & 5    & 460   & 4 (25)        \\
+        5  & ----------HASH GROUP BY          &                 & 5    & 395   & 4 (25)        \\
+        6  & ------------TABLE ACCES FULL     & OOBSAHUJEP      & 5    & 395   & 3 (0)         \\
+        7  & --------INDEX UNIQUE SCAN        & SYS\_C001274290 & 1    &       & 0 (0)         \\
+        8  & ------TABLE ACCES BY INDEX ROWID & POTRAVINA       & 1    & 79    & 1 (0)         \\ \hline
+        \end{tabular}
+        \end{table}
+    \subsection{Po pouziti INDEX}
+        \begin{tabular}{|l|l|l|l|l|l|}
+        \hline
+        ID & Operation                        & Name              & Rows & Bytes & Cost (\% CPU) \\ \hline
+        0  & SELECT STATEMENT                 &                   & 5    & 855   & 3 (0)         \\
+        1  & --HASH GROUP BY                  &                   & 5    & 855   & 3 (0)         \\
+        2  & ----NESTED LOOPS                 &                   & 5    & 855   & 3 (0)         \\
+        3  & ------NESTED LOOPS               &                   & 5    & 855   & 3 (0)         \\
+        4  & --------VIEWS                    & VW\_DBF\_5        & 5    & 460   & 1 (0)         \\
+        5  & ----------HASH GROUP BY          &                   & 5    & 395   & 1 (0)         \\
+        6  & ------------INDEX FULL SCAN      & INDEX\_OOBSAHUJEP & 5    & 395   & 1 (0)         \\
+        7  & --------INDEX UNIQUE SCAN        & SYS\_C001274290   & 1    &       & 0 (0)         \\
+        8  & ------TABLE ACCES BY INDEX ROWID & POTRAVINA         & 1    & 79    & 1 (0)         \\ \hline
+        \end{tabular}
+        \end{table}
+
+    \subsection{Vysvětlení EXPLAIN PLAIN}
+    Z tabulek je vidět, že se snížilo zatížení procesoru a též byl menší počet
+    přístupů na disk. SELECT STATEMENT značí provedení samotného SELECT příkazu,
+    HASH GROUP BY znamená, že se položky seskupí podle hashovacího klíče.
+    Dva vnořené cykly ukazují průchod tabulkami. TABLE ACCES FULL značí průchod
+    celou tabulkou pez použití indexu, INDEX_FULL_SCAN značí zase použití INDEXU.
+    INDEX UNIQUE SCAN je přístup k tabulkám přes B-strom a nakonec TABLE ACCES BY INDEX ROWID
+    je přístup do tabulky přes konkrétní řádek.
 \end{document}

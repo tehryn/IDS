@@ -11,6 +11,8 @@ DROP TABLE Uctenka     CASCADE CONSTRAINTS;
 
 DROP SEQUENCE Zamestnanec_seq;
 
+DROP MATERIALIZED VIEW Zamestnanec_pozice;
+
 ALTER SESSION SET NLS_DATE_FORMAT = 'dd.mm.yyyy, hh24:mi';
 
 CREATE TABLE Zamestnanec ( /**/
@@ -370,3 +372,40 @@ SELECT R.ID, R.cas, Z.jmeno
 FROM Zamestnanec Z, Rezervace R
 WHERE Z.ID = R.ID_ZAM;
 -- IN, exists, group a slouceni 2 a 3 tabulek splneno
+
+-------------------------------------------------------------------------------
+-- EXPLAIN PLAN
+EXPLAIN PLAN FOR
+SELECT O.ID, SUM(P.cena) FROM Objednavka O, Potravina P, OObsahujeP OOP
+WHERE O.ID = OOP.ID AND P.jmeno = OOP.jmeno GROUP BY O.ID;
+
+--------------------------------------------------------------------------------
+-- INDEX
+SELECT * FROM TABLE(DBMS_XPLAN.display);
+
+CREATE INDEX index_id_objednavky ON OObsahujeP(ID, jmeno);
+
+EXPLAIN PLAN FOR
+SELECT O.ID, SUM(P.cena) FROM Objednavka O, Potravina P, OObsahujeP OOP
+WHERE O.ID = OOP.ID AND P.jmeno = OOP.jmeno GROUP BY O.ID;
+
+SELECT * FROM TABLE(DBMS_XPLAN.display);
+--------------------------------------------------------------------------------
+-- Materializovany pohled
+CREATE MATERIALIZED VIEW LOG ON Zamestnanec WITH PRIMARY KEY,ROWID(prac_pozice) INCLUDING NEW VALUES;
+CREATE MATERIALIZED VIEW Zamestnanec_pozice
+CACHE                   -- lepsi nacitani z pohledu
+BUILD IMMEDIATE         -- naplneni pohledu hned po vytvoreni
+REFRESH FAST ON COMMIT  -- aktualizuje pri komitu
+ENABLE QUERY REWRITE    -- pouziti optimalizace
+AS SELECT prac_pozice, count(prac_pozice) as pocet_zamestnancu_na_pozici FROM Zamestnanec
+GROUP BY prac_pozice;
+GRANT ALL ON Zamestnanec_pozice TO xmisov00;
+
+-- demonstrace pohledu
+SELECT * FROM Zamestnanec_pozice;
+INSERT INTO Zamestnanec VALUES (
+    1, 'kuchar', 'Ladislav Jablicko', 9510181549 , '+420 565 666 879', 1334567890100, 14000
+);
+COMMIT;
+SELECT * FROM Zamestnanec_pozice;
