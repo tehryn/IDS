@@ -46,10 +46,10 @@
     ID, druhý kontroluje platnost rodného čísla.
 
     \section{Procedury}
-    Obě ze dvou procedur používají CURSOR a EXCEPTION. Procedura  \texit{procento_vytvorenych_rezervaci}
+    Obě ze dvou procedur používají CURSOR a EXCEPTION. Procedura  \textit{procento\_vytvorenych\_rezervaci}
     má jako parametr ID zaměstnance a vypíše jeho jméno a kolik rezercací vytvořil
     (v procentech). Pracuje tedy se dvěmi tabulkami: Rezervace a Zamestnanec.
-    Druhá procedura \textit{pocet_zidli} má jako parametr lokaci a vypíše
+    Druhá procedura \textit{pocet\_zidli} má jako parametr lokaci a vypíše
     lokaci a počet židlí, které se v lokaci nacházejí. Pracuje tedy s tabulkou
     Stul.
 
@@ -73,7 +73,9 @@
     (viz. níže).
 
     \subsection {Pred pouzitim INDEX}
-        \begin{tabular}{|l|l|l|l|l|l|}
+        \begin{table}[]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|}
         \hline
         ID & Operation                        & Name            & Rows & Bytes & Cost (\% CPU) \\ \hline
         0  & SELECT STATEMENT                 &                 & 5    & 855   & 6 (17)        \\
@@ -88,7 +90,9 @@
         \end{tabular}
         \end{table}
     \subsection{Po pouziti INDEX}
-        \begin{tabular}{|l|l|l|l|l|l|}
+        \begin{table}[]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|}
         \hline
         ID & Operation                        & Name              & Rows & Bytes & Cost (\% CPU) \\ \hline
         0  & SELECT STATEMENT                 &                   & 5    & 855   & 3 (0)         \\
@@ -108,7 +112,7 @@
     přístupů na disk. SELECT STATEMENT značí provedení samotného SELECT příkazu,
     HASH GROUP BY znamená, že se položky seskupí podle hashovacího klíče.
     Dva vnořené cykly ukazují průchod tabulkami. TABLE ACCES FULL značí průchod
-    celou tabulkou pez použití indexu, INDEX_FULL_SCAN značí zase použití INDEXU.
+    celou tabulkou pez použití indexu, INDEX FULL SCAN značí zase použití INDEXU.
     INDEX UNIQUE SCAN je přístup k tabulkám přes B-strom a nakonec TABLE ACCES BY INDEX ROWID
     je přístup do tabulky přes konkrétní řádek.
 \end{document}
