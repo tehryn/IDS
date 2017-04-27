@@ -71,7 +71,6 @@
     Index byl vytvořen nad parametry tabulky OObsahujeP a to nad ID objednávky
     a jménem potraviny. Po použití INDEX se procesorové zatížení značně zmenšilo
     (viz. níže).
-
     \caption{Před použitím INDEX}
     \begin{table}[]
 	\centering
@@ -88,8 +87,7 @@
         7  & --------INDEX UNIQUE SCAN        & SYS\_C001274290 & 1    &       & 0 (0)         \\
         8  & ------TABLE ACCES BY INDEX ROWID & POTRAVINA       & 1    & 79    & 1 (0)         \\ \hline
         \end{tabular}
-        \end{table}
-        
+        \end{table}    
     \caption{Po pouziti INDEX}
     \begin{table}[]
 	\centering
