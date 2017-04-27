@@ -47,28 +47,28 @@
 
     \section{Procedury}
     Obě ze dvou procedur používají CURSOR a EXCEPTION. Procedura  \textit{procento\_vytvorenych\_rezervaci}
-    má jako parametr ID zaměstnance a vypíše jeho jméno a kolik rezercací vytvořil
-    (v procentech). Pracuje tedy se dvěmi tabulkami: Rezervace a Zamestnanec.
+    má jako parametr ID zaměstnance a vypíše jeho jméno a kolik rezervací vytvořil
+    (v procentech). Pracuje tedy se dvěmi tabulkami: \textit{Rezervace} a \textit{Zamestnanec}.
     Druhá procedura \textit{pocet\_zidli} má jako parametr lokaci a vypíše
     lokaci a počet židlí, které se v lokaci nacházejí. Pracuje tedy s tabulkou
-    Stul.
+    \textit{Stul}.
 
     \section{Přidělení práv uživateli xmisov00}
-    Uživatel xmisov00 získal veškerá práva k procedurám a tabulkám, má tudíš
+    Uživatel xmisov00 získal veškerá práva k procedurám a tabulkám, má tudíž
     oprávnění administrátora (např. majitel restaurace). Kuchař by měl, práva
-    přístupu k tabulkám Surovina, Potravina a PObsahujeS.
+    přístupu k tabulkám \textit{Surovina}, \textit{Potravina} a \textit{PObsahujeS}.
 
     \section{Materializovaný pohled}
-    Spolu s materializovaným pohledem byly vutvořeny i logy pro něj (využití
+    Spolu s materializovaným pohledem byly vytvořeny i logy pro něj (využití
     FAST REFRESH ON COMMIT - nemusí se spouštět celý dotaz materializovaného
     pohledu). Mimo REFRESH FAST ON COMMIT jsme do pohledu nastavili i CACHE,
     pro lepší načítání z pohledu, BUILD IMMEDIATE pro okamžité naplnění pohledu
     po vytvoření a ENABLE QUERY REWRITE pro zapnutí optimalizace.
 
-    \section{Index a explain plain}
-    EXPLAIN PLAIN byl vytvořen pro spojení 3 tabulek a to Objednavka, Potravina
-    a OObsahujeP. Z těchto tabulek byla vypočítána celková cena objednávek.
-    Index byl vytvořen nad parametry tabulky OObsahujeP a to nad ID objednávky
+    \section{INDEX a EXPLAIN PLAIN}
+    EXPLAIN PLAIN byl vytvořen pro spojení 3 tabulek a to \textit{Objednavka}, \textit{Potravina}
+    a \textit{OObsahujeP}. Z těchto tabulek byla vypočítána celková cena objednávek.
+    Index byl vytvořen nad parametry tabulky \textit{OObsahujeP} a to nad ID objednávky
     a jménem potraviny. Po použití INDEX se procesorové zatížení značně zmenšilo
     (viz. další strana).
 \pagebreak
@@ -88,10 +88,10 @@
         7  & --------INDEX UNIQUE SCAN        & SYS\_C001274290 & 1    &       & 0 (0)         \\
         8  & ------TABLE ACCES BY INDEX ROWID & POTRAVINA       & 1    & 79    & 1 (0)         \\ \hline
         \end{tabular}
-        \end{table}    
+        \end{table}
 
     \begin{table}[h]
-	\caption{Po pouziti INDEX}
+	\caption{Po použití INDEX}
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|}
         \hline
@@ -113,7 +113,15 @@
     přístupů na disk. SELECT STATEMENT značí provedení samotného SELECT příkazu,
     HASH GROUP BY znamená, že se položky seskupí podle hashovacího klíče.
     Dva vnořené cykly ukazují průchod tabulkami. TABLE ACCES FULL značí průchod
-    celou tabulkou pez použití indexu, INDEX FULL SCAN značí zase použití INDEXU.
+    celou tabulkou bez použití indexu, INDEX FULL SCAN značí zase použití INDEXU.
     INDEX UNIQUE SCAN je přístup k tabulkám přes B-strom a nakonec TABLE ACCES BY INDEX ROWID
     je přístup do tabulky přes konkrétní řádek.
+
+    \section{Závěr}
+    Díky projektu jsme se seznámily s jazykem SQL a naučili se navrhovat databázové
+    systémy. Pro vypracování projektu jsme používali nejen přednášky, ale hlavně
+    externí zdroje, zejména fórum StackOverflow. Projekt jsme programovali v
+    prostředí Oracle Developer, které nám bylo nabídno ve formě obrazu pro virtuální
+    stroj. Dokumentaci jsme tvořili v pomocí \LaTeX u.
+
 \end{document}
