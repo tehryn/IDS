@@ -31,7 +31,7 @@
 
 	\section{Zadání}
 	Vytvořte IS pro restaurační zařízení, který napomůže k zjednodušení a zpřehlednění jeho provozu. Restaurace je členěna do více místností a má přední a zadní zahrádku a poskytuje běžné stravovací služby veřejnosti. Od informačního systému se požaduje, aby, krom jiného, umožnil správu rezervací a objednávek. Rezervovat je možné jeden nebo více stolů v místnostech či na zahrádkách, anebo celé místnosti, případně i celou restauraci pro různé společenské akce. Součástí rezervace také může být objednávka nápojů a jídel. Systém musí umožňovat zaměstnancům restaurace vkládat objednávky spolu s informacemi, který zaměstnanec danou objednávku vložil a pro koho je určena. Když se zákazníci rozhodnou zaplatit, musí jim systém vystavit účtenku. Po zaplacení pak příslušný zaměstnanec vloží záznam o platbě do systému. Systém by měl také poskytovat podrobný přehled tržeb za vybrané období. Přístup k této funkci bude mít pouze majitel. V neposlední řadě musí systém evidovat veškeré prodávané jídlo a pití (včetně složení), přičemž majitel a odpovědný vedoucí mají možnost měnit ceny jídla a pití nebo přidávat a odebírat položky.
-
+    \pagebreak
 	\section{Konečný ER diagram}
 	\begin{figure}[h]
 	\begin{center}
@@ -72,8 +72,8 @@
     a jménem potraviny. Po použití INDEX se procesorové zatížení značně zmenšilo
     (viz. níže).
 
-    \subsection {Pred pouzitim INDEX}
-        \begin{table}[]
+    \caption{Před použitím INDEX}
+    \begin{table}[]
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|}
         \hline
@@ -89,8 +89,9 @@
         8  & ------TABLE ACCES BY INDEX ROWID & POTRAVINA       & 1    & 79    & 1 (0)         \\ \hline
         \end{tabular}
         \end{table}
-    \subsection{Po pouziti INDEX}
-        \begin{table}[]
+        
+    \caption{Po pouziti INDEX}
+    \begin{table}[]
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|}
         \hline
