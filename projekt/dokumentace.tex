@@ -48,7 +48,7 @@
     \section{Procedury}
     Obě ze dvou procedur používají CURSOR a EXCEPTION. Procedura  \textit{procento\_vytvorenych\_rezervaci}
     má jako parametr ID zaměstnance a vypíše jeho jméno a kolik rezervací vytvořil
-    (v procentech). Pracuje tedy se dvěmi tabulkami: \textit{Rezervace} a \textit{Zamestnanec}.
+    (v procentech). Pracuje tedy se dvěmy tabulkami: \textit{Rezervace} a \textit{Zamestnanec}.
     Druhá procedura \textit{pocet\_zidli} má jako parametr lokaci a vypíše
     lokaci a počet židlí, které se v lokaci nacházejí. Pracuje tedy s tabulkou
     \textit{Stul}.
@@ -65,8 +65,8 @@
     pro lepší načítání z pohledu, BUILD IMMEDIATE pro okamžité naplnění pohledu
     po vytvoření a ENABLE QUERY REWRITE pro zapnutí optimalizace.
 
-    \section{INDEX a EXPLAIN PLAIN}
-    EXPLAIN PLAIN byl vytvořen pro spojení 3 tabulek a to \textit{Objednavka}, \textit{Potravina}
+    \section{INDEX a EXPLAIN PLAN}
+    EXPLAIN PLAN byl vytvořen pro spojení 3 tabulek a to \textit{Objednavka}, \textit{Potravina}
     a \textit{OObsahujeP}. Z těchto tabulek byla vypočítána celková cena objednávek.
     Index byl vytvořen nad parametry tabulky \textit{OObsahujeP} a to nad ID objednávky
     a jménem potraviny. Po použití INDEX se procesorové zatížení značně zmenšilo
@@ -108,7 +108,7 @@
         \end{tabular}
         \end{table}
 
-    \subsection{Vysvětlení EXPLAIN PLAIN}
+    \subsection{Vysvětlení EXPLAIN PLAN}
     Z tabulek je vidět, že se snížilo zatížení procesoru a též byl menší počet
     přístupů na disk. SELECT STATEMENT značí provedení samotného SELECT příkazu,
     HASH GROUP BY znamená, že se položky seskupí podle hashovacího klíče.
@@ -118,7 +118,7 @@
     je přístup do tabulky přes konkrétní řádek.
 
     \section{Závěr}
-    Díky projektu jsme se seznámily s jazykem SQL a naučili se navrhovat databázové
+    Díky projektu jsme se seznámili s jazykem SQL a naučili se navrhovat databázové
     systémy. Pro vypracování projektu jsme používali nejen přednášky, ale hlavně
     externí zdroje, zejména fórum StackOverflow. Projekt jsme programovali v
     prostředí Oracle Developer, které nám bylo nabídno ve formě obrazu pro virtuální
